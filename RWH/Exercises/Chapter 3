@@ -1,0 +1,92 @@
+import Data.List
+
+data Tree a = Node a (Tree a) (Tree a)
+            | Empty
+              deriving (Show)
+
+data Point a = Point (a, a)
+               deriving (Show)
+
+data Direction = StraightLine
+               | LeftTurn
+               | RightTurn
+                 deriving (Show, Eq) -- 9. done
+
+-- 1.Write a function that computes the number of elements in a list.
+-- To test it, ensure that it gives the same answers as the standard length function
+
+compute :: [a] -> Int -- 2. done
+compute []     = 0
+compute (x:xs) = 1 + compute xs -- 1. done
+
+-- 2. Add a type signature for your function to your source file.
+-- To test it, load the source file into ghci again
+-- 3. Write a function that computes the mean of a list, 
+-- i.e. the sum of all elements in the list divided by its length.
+-- (You may need to use the fromIntegral function to convert
+-- the length of the list from an integer into a floating point number.)
+
+meanList []   = 0
+meanList list = let aaa = sum list
+                  in let bbb = fromIntegral (length list) in aaa / bbb -- 3. done 
+
+-- 4. Turn a list into a palindrome, i.e. it should read the same both
+-- backwards and forwards. For example, given the list [1,2,3],
+-- your function should return [1,2,3,3,2,1].
+
+palindrome [] = []
+palindrome xs = xs ++ (reverse xs) -- 4. done
+
+-- 5. Write a function that determines whether its input list is a palindrome.
+
+isPal [] = True
+isPal xs = if xs == reverse xs then True else False -- 5. done
+
+-- 6. Create a function that sorts a list of lists based on the length
+-- of each sublist. (You may want to look at the sortBy function from
+-- the Data.List module.)
+
+sortll []     = []
+sortll [[]]   = [[]]
+sortll (x:xs) = sortBy (\ x y -> compare (length x) (length y) ) (x:xs) -- 6. done
+
+-- 7. Define a function that joins a list of lists together using
+-- a separator value. The separator should appear between elements
+-- of the list, but should not follow the last element
+-- intersperse ',' ["foo","bar","baz","quux"] -> "foo,bar,baz,quux"
+
+intersp :: a -> [[a]] -> [a]
+intersp sep []     = []
+intersp sep (x:[]) = x
+intersp sep (x:xs) = x ++ [sep] ++ (intersp sep xs) -- 7. done
+
+-- 8. Using the binary tree type that we defined earlier in this chapter,
+-- write a function that will determine the height of the tree. The height
+-- is the largest number of hops from the root to an Empty. For example,
+-- the tree Empty has height zero; Node "x" Empty Empty has height one;
+-- Node "x" Empty (Node "y" Empty Empty) has height two; and so on
+
+height :: Tree a -> Int                      
+height Empty = 0
+height (Node _ left right) = 1 + max (height left) (height right) -- 8. done
+
+myTree  = Node "orig" (Node "newleft" Empty Empty) (Node "newright" Empty Empty) 
+myTree1 = Node "orig" (Node "newleft" Empty Empty) (Node "newright" (Node "end" Empty Empty) (Node "new_end" Empty Empty) )
+
+-- 9. Consider three two-dimensional points a, b, and c. If we look at 
+-- the angle formed by the line segment from a to b and the line segment 
+-- from b to c, it either turns left, turns right, or forms a straight line.
+-- Define a Direction data type that lets you represent these possibilities.
+
+pBlue   = Point (1,1)
+pGreen  = Point (5,2)
+pYellow = Point (2,4)
+
+-- 10. Write a function that calculates the turn made by three 2D points 
+-- and returns a Direction
+
+calcDirection ( Point (xa,ya) ) ( Point (xb,yb) ) ( Point (xc,yc) ) -- 10. done
+           | line < 0  = RightTurn
+           | line == 0 = StraightLine
+           | line > 0  = LeftTurn
+           where line = ( xa - xb ) * ( yc - ya ) - ( yb - ya ) * ( xc - xa ) 
