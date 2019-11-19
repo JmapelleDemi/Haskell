@@ -3,14 +3,6 @@ bigNum = (^) 5 10
 x = print
 y = print "woohoo!"
 z = x "hello world!"
-{-
-a = (+)
-b = 5
-c = a b 10
-d = a c 200 
-
-a = 12 + b
-b = 12000 * c -}
 
 funcH :: [a] -> a
 funcH (x:_) = x
@@ -53,4 +45,3 @@ a _ x = x
 
 a' :: (a -> b) -> a -> b
 a' f x = f x 
-
