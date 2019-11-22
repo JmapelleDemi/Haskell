@@ -26,7 +26,6 @@ dividedBy num denom = go num denom 0
 
 {- The McCarthy 91 function yields x - 10 when x > 100 and 91 otherwise.
 The function is recursive-}
-
 mc91 :: (Num a, Ord a) => a -> a
 mc91 n
   | n > 100   = n - 10
