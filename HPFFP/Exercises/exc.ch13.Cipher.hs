@@ -13,6 +13,9 @@ encode :: Int -> String -> String
 encode shift []     = []
 encode shift (x:xs) = case x == ' ' of True  -> x : encode shift xs
                                        False -> chr (ord x - shift) : encode shift xs
+                                       
+{- Ciphers: Open your Ciphers module and modify it so that the
+Caesar and Vigenиre ciphers work with user input -}
 
 kkey :: String -> Int
 kkey a = (read a :: Int)
