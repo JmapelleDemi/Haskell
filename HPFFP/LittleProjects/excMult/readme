@@ -1,0 +1,10 @@
+Intermission: Short Exercise
+
+  In the Chapter Exercises at the end of Recursion, you were given this
+exercise:
+  Write a function that multiplies two numbers using recursive sum-
+mation. The type should be (Eq a, Num a) => a -> a -> a although,
+depending on how you do it, you might also consider adding an Ord
+constraint.
+  If you still have your answer, great! If not, rewrite it and then
+write Hspec tests for it.
