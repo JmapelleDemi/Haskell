@@ -106,7 +106,7 @@ the purposes of the following exercises:   -}
 sequA :: Integral a => a -> [Bool]
 sequA m = sequenceA [(>3), (<8), even] m
 
--- And henceforth let        summed <$> ((,) <$> xs <*> ys)  be known as s'.
+-- And henceforth let        summed <$> ((,) <$> xs <*> ys)      be known as s'.
 
 s' = summed <$> ((,) <$> xs <*> ys)
 
@@ -115,18 +115,17 @@ s' = summed <$> ((,) <$> xs <*> ys)
 to use print to be able to print the results of what you’re adding):
 
 1. fold the boolean conjunction operator over the list of results of
-sequA (applied to some value).     -}
+sequA (applied to some value)     -}
 
 newFold op ini m = foldr op ini (sequA m)
 
--- 2. apply sequA to s'; you’ll need fromMaybe.
+-- 2. apply sequA to s'; you’ll need fromMaybe
 
 appSeq :: [Bool]
 appSeq = sequA $ fromMaybe 0 s'
 appSeq' :: Maybe [Bool]
 appSeq' = sequA <$> s' -- appSeq' ::
 
-{-
-3. apply bolt to ys; you’ll need fromMaybe.  -}
+-- 3. apply bolt to ys; you’ll need fromMaybe
 
 appBolt = bolt $ fromMaybe 0 ys
